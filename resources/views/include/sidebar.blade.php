@@ -1,11 +1,11 @@
 <!-- Sidebar -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <a href="#" class="brand-link d-flex justify-content-center align-items-center">
-        <img src="{{ asset('image/ITATS.png') }}"
+        <img src="{{ asset('image/rpl-fresh.png') }}"
              alt="Logo ITATS"
              class="brand-image d-none d-md-inline"
-             style="width: 120px; height: 60px; object-fit: contain;">
-        <img src="{{ asset('image/ITATS.png') }}"
+             style="width: 170px; height: 90px; object-fit: contain;">
+        <img src="{{ asset('image/rpl.png') }}"
              alt="Logo Mini ITATS"
              class="brand-image d-inline d-md-none"
              style="width: 40px; height: 40px; object-fit: contain;">
@@ -41,8 +41,7 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
-
-                @if (session('role_name') === 'Admin')
+                {{-- @if (session('role_name') === 'Admin') --}}
                 <li class="nav-item">
                     <a href="{{ route('role.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-user-shield"></i>
@@ -55,7 +54,7 @@
                         <p>Pengguna</p>
                     </a>
                 </li>
-                @endif
+                {{-- @endif --}}
 
                 <li class="nav-item">
                     <a href="{{ url('divisi') }}" class="nav-link">

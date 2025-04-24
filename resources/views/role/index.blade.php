@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ITATS Lab RPL - Role</title>
-    <link rel="icon" type="image/png" href="{{ asset('image/HMIF_1.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('image/logo-RPL.jpg') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css">
@@ -135,10 +135,14 @@
                 <div class="modal-body">
                     Apakah Anda yakin ingin menghapus peran ini? Tindakan ini tidak dapat dibatalkan.
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <a href="#" id="confirmDeleteBtn" class="btn btn-danger"><i class="fas fa-trash"></i> Hapus</a>
-                </div>
+                <form id="deleteForm" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Hapus</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -151,9 +155,28 @@
     <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
-    <script src="{{ asset('js/RoleScript.js') }}"></script>
     <script src="{{ asset('js/ToastScript.js') }}"></script>
     <script>
+        $(document).ready(function () {
+            $("#roleTable").DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true
+            });
+        });
+
+        $(document).ready(function () {
+            $('.delete-role-btn').click(function () {
+                let roleId = $(this).data('role-id');
+                let deleteUrl = "{{ url('role') }}/" + roleId;
+                $('#deleteForm').attr('action', deleteUrl);
+            });
+        });
+
         $(document).ready(function () {
             $(".toggle-status").change(function () {
                 let roleId = $(this).data("role-id");

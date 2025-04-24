@@ -9,7 +9,7 @@ class RoleController extends Controller
 {
     public function index()
     {
-        $roles = Role::all();
+        $roles = Role::orderBy('created_at', 'asc')->get(); // Urutkan dari yang paling lama ke terbaru
         return view('role.index', compact('roles'));
     }
 
