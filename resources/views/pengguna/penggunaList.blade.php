@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/FontConfig.css') }}">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
@@ -58,6 +57,9 @@
                                                 <td>{{ $pengguna->no_telepon }}</td>
                                                 <td>{{ $pengguna->role->role_name ?? '-' }}</td>
                                                 <td class="text-center">
+                                                    <a href="{{ route('pengguna.show', $pengguna->id) }}" class="btn btn-info btn-sm">
+                                                        <i class="fas fa-eye"></i> Detail
+                                                    </a>
                                                     <a href="{{ route('pengguna.edit', $pengguna->id) }}" class="btn btn-info btn-sm">
                                                         <i class="fas fa-edit"></i> Edit
                                                     </a>

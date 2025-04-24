@@ -45,7 +45,7 @@ class PenggunaController extends Controller
     {
         $pengguna = Pengguna::findOrFail($id);
         $roles = Role::all();
-        return view('pengguna.edit', compact('pengguna'));
+        return view('pengguna.edit', compact('pengguna', 'roles'));
     }
 
     public function update(Request $request, $id)
@@ -73,6 +73,12 @@ class PenggunaController extends Controller
         $pengguna->updatePengguna($data);
 
         return redirect()->route('pengguna.index')->with('success', 'Pengguna berhasil diperbarui.');
+    }
+
+    public function show($id)
+    {
+        $pengguna = Pengguna::with('role')->findOrFail($id);
+        return view('pengguna.show', compact('pengguna'));
     }
 
     public function destroy($id)
